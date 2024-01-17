@@ -1,0 +1,13 @@
+[Unit]
+Description=Riak metrics re-exporter in the Prometheus text exposition format
+After=network.target
+
+[Service]
+Type=exec
+User=riak
+ExecStart=/usr/local/bin/promriak
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

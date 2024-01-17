@@ -1,0 +1,28 @@
+[package]
+name = "promriak"
+version = "0.1.0"
+edition = "2021"
+description = "Riak metrics re-exporter in the Prometheus text exposition format"
+
+[dependencies]
+color-eyre = "0.6"
+lazy_static = "1.4"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+
+clap = { version = "4.4", features = ["env"] }
+
+serde = { version = "1.0", features = ["derive"] }
+serde_with = "3.4"
+serde_json = "1.0"
+serde_yaml = "0.9"
+
+tokio = { version = "1.35", features = ["rt"] }
+
+axum = "0.7"
+reqwest = { version = "0.11", default-features = false, features = ["json"] }
+
+[profile.release]
+opt-level = 3 #'z'
+lto = true
+codegen-units = 1

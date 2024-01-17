@@ -1,0 +1,73 @@
+# tracing_level
+#   Tracing level of the tracing subscriber to set.
+#
+#   Options: TRACE | DEBUG | INFO | WARN | ERROR
+#   Default: INFO
+tracing_level: INFO
+
+# bind_address
+#   Address to bind the listener socket to for the HTTP server.
+#   Use 0.0.0.0 to bind on all interfaces.
+#
+#   Default: 127.0.0.1
+bind_address: 127.0.0.1
+
+# listener_port
+#   Port to listen on for the HTTP server.
+#   Why is the default 9198? Why not, it is a perfectly cromulent port.
+#     
+#   Default: 9198
+listener_port: 9198
+
+# scrape_interval
+#   The interval in milliseconds between each /stats scraping
+#
+#   Default: 2500
+scrape_interval: 2500
+
+# stale_threshold
+#   The threshold in milliseconds after which a successful scrape's data 
+#   will be considered stale and no longer be served.
+#
+#   Default: 20000
+stale_threshold: 20000
+
+# special_metrics
+#   Include custom metrics:
+#     - `ring_members_count`: numeric count of the `ring_members` array
+#     - `connected_nodes_count`: numeric count of the `connected_nodes` array
+#     - `available_nodes_count`: `connected_nodes_count` + 1 (to include self)
+#   
+#   Default: true
+special_metrics: true
+
+# prefix
+#   Prefix every metric
+#   Use an empty string to opt out of a prefix.
+#
+#   Default: riak_
+prefix: riak_
+
+# instances
+#   Riak instances to scrape metrics from.
+#
+#   The stats from each instance will be made available on:
+#     http://{bind_address}:{listener_port}/stats/{instance.id}
+#
+#   Required:
+#     id
+#     endpoint
+#
+#   Optional, inherited from the root if omitted:
+#     scrape_interval
+#     stale_threshold
+#     prefix
+#     special_metrics
+#
+#   Default: a single local Riak instance with id `local` and endpoint 
+#            `http://127.0.0.1:8098/stats`
+instances:
+  # A local Riak instance with id `local` and endpoint `http://127.0.0.1:8098/stats`
+  # Stats will be available on http://{bind_address}:{listener_port}/stats/local
+  - id: local
+    endpoint: http://127.0.0.1:8098/stats
