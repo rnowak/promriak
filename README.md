@@ -8,11 +8,7 @@ a stale threshold is reached.
 
 ## Configuration
 
-Configuration is first searched for according to
-[XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
-for configuration files.
-
-As a fallback, the following locations will be attempted:
+Configuration is searched for in the following locations:
 
     ./promriak.yaml 
     /usr/local/etc/promriak/promriak.yaml
